@@ -12,30 +12,30 @@ Na raiz do projeto:
 
 Abra o ".env" e preencha:
 
-*1- CREDENTIALS_ENCRYPTION_KEY*
-# Gere uma chave e cole em CREDENTIALS_ENCRYPTION_KEY
+# 1- CREDENTIALS_ENCRYPTION_KEY
+*Gere uma chave e cole em CREDENTIALS_ENCRYPTION_KEY*
 
 Abra o powershell e digite esse comando: openssl rand -hex 32
 
-# Copie o código gerado
+*Copie o código gerado*
 
 E preencha o *CREDENTIALS_ENCRYPTION_KEY*
 
 Esse código evita que se alguem tiver acesso direto ao banco de dados, consiga ler essas credenciais em texto puro. Elas ficam cifradas no MySQL e só são decifradas pelo backend na hora de fazer as chamadas HTTP pro gateway.
 
-*2- JWT_SECRET*
+# 2- JWT_SECRET
 
-# Apenas coloque uma senha forte e coloque em JWT_SECRET.
+*Apenas coloque uma senha forte e coloque em JWT_SECRET.*
 
 Serve para assinar e validar os tokens JWT usados na autenticação do sistema, isso garante que o token gerado no login (POST /auth/login) é autenticado e nao foi tentado acessar por desconhecido td vez que uma requisição chega em uma rota protegida da API.
 
-*3- JWT_EXPIRES_IN*
+# 3- JWT_EXPIRES_IN
 
-# Aqui voce define um valor de horas com "h" no final que define quando vai ser expirado a pagina e tera que fazer login novamente, eu deixe 24h por exemplo
+*Aqui voce define um valor de horas com "h" no final que define quando vai ser expirado a pagina e tera que fazer login novamente, eu deixe 24h por exemplo*
 
-*4- PUBLIC_BASE_URL*
+# 4- PUBLIC_BASE_URL
 
-# Aqui para validar autenticidade dos webhooks recebidos, como estamos instalando localmente eu utilizo o ngrok.
+*Aqui para validar autenticidade dos webhooks recebidos, como estamos instalando localmente eu utilizo o ngrok.*
 
 *Como instalar o ngrok* -> acesse: https://ngrok.com/download e siga o instalador, logo após crie sua conta em: https://dashboard.ngrok.com/signup e pegue o authtoken em: https://dashboard.ngrok.com/get-started/your-authtoken e rode no cmd:
 
@@ -49,13 +49,13 @@ Copie e colo esse URL em: *PUBLIC_BASE_URL*
 
 Isso serve para quando o gateway envia uma notificação para o endpoint POST /webhooks/lera-box, ele assina essa requisição com um "código secreto", obackend usa essa mesma chave para conferir a assinatura no X-Lera-Box-Signature, isso garante que a notificação realmente veio do gateway e não de alguem desconhecido tentando invadir.
 
-*5- Configuração para o envio de email*
+# 5- Configuração para o envio de email
 
-# SMTP_HOST=smtp.gmail.com
-# SMTP_PORT=587
-# SMTP_USER=seuemail@gmail.com
-# SMTP_PASSWORD=xxxx xxxx xxxx xxxx
-# SMTP_FROM=seuemail@gmail.com
+- SMTP_HOST=smtp.gmail.com
+- SMTP_PORT=587
+- SMTP_USER=seuemail@gmail.com
+- SMTP_PASSWORD=xxxx xxxx xxxx xxxx
+- SMTP_FROM=seuemail@gmail.com
 
 Estou utilizando o *Gmail* mesmo para fazer isso, Host e Port deixe a padrão SMTP mesmo, em *SMTP_USER* e *SMTP_FROM* coloque o email que vai utilizado para fazer o envio, em *SMTP_PASSWORD* não é a senha do seu email, é um codigo gerado dentro do gmail. É necessario estar com o 2fa ativo se não tiver clique nesse link: https://myaccount.google.com/security e ative, agora para conseguir o código gerado clique aqui: https://myaccount.google.com/apppasswords. Em Nome do app digite qualquer nome tipo "LeraPay". Clique em Gerar e vai aparecer um código com 16 letras (xxxx yyyy zzzz aaaa) copie e cole e remova os espaços em *SMTP_PASSWORD* ficando assim: xxxxyyyyzzzzaaaa
 
@@ -100,10 +100,9 @@ Após logar ainda não vai estar cadastrado e autenticado, Na aba *Conta no gate
 
 Aqui voce define qual vai ser o user, email e senha.
 
-# DEMO_USER_NAME=
-# DEMO_USER_EMAIL=
-# DEMO_USER_PASSWORD=
-
+- DEMO_USER_NAME=
+- DEMO_USER_EMAIL=
+- DEMO_USER_PASSWORD=
 
 *Dados para uma conta ja cadastrada voce utiliza os dados de uma conta que ja tem cadastro apenas como DEMO para visualizar*
 
@@ -111,12 +110,11 @@ Aqui voce define qual vai ser o user, email e senha.
 
 São os dados da conta cadastrada que voce recebeu por email
 
-# DEMO_GATEWAY_PERSON_TYPE= PF ou PJ
-# DEMO_GATEWAY_DOCUMENT= 12345678900 (Exemplo de Documento)
-# DEMO_GATEWAY_PASSWORD= Senha que recebeu por email
-# DEMO_GATEWAY_EMAIL= Email utilizado no cadastro
-# DEMO_GATEWAY_PHONE= Celular utilizado no cadastro
-
+- DEMO_GATEWAY_PERSON_TYPE= PF ou PJ
+- DEMO_GATEWAY_DOCUMENT= 12345678900 (Exemplo de Documento)
+- DEMO_GATEWAY_PASSWORD= Senha que recebeu por email
+- DEMO_GATEWAY_EMAIL= Email utilizado no cadastro
+- DEMO_GATEWAY_PHONE= Celular utilizado no cadastro
 
 *Agora voce vai no CMD e roda*
 
@@ -126,4 +124,4 @@ docker compose up --build -d
 
 docker compose exec backend node dist/seed/seed-demo.js
 
-*Logo abaixo vaia aparecer as informações da conta criada e logo após é só acessar com as informações que ja estara funcionando*
+*Logo abaixo vai aparecer as informações da conta criada e logo após é só acessar com as informações que ja estara funcionando*
