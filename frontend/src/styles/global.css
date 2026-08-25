@@ -1,0 +1,740 @@
+:root {
+  --bg: #090a0c;
+  --bg2: #090a0c2a;
+  --bg-itens: #37026d77;
+  --caixa-dados: #0a0b0e;
+  --border: #37026d77;
+  --border-strong: #7704e969;
+
+  --text: #f0ecf5;
+  --text-muted: #998eb3;
+  --text-faint: #5c6c7d;
+
+  --principal: #7604e9b7;
+  --secundario: #44038588;
+  --green: #2fb8a6; /* Sucesso */
+  --red: #e5636a; /* Falha */
+  --silver: #7b8ea3; /* Neutro */
+  --violet: #8b8cf0; 
+
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SFMono-Regular', monospace;
+
+  --radius: 10px;
+  --radius-sm: 6px;
+  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+button, input, select {
+  font-family: inherit;
+}
+
+button, input, select, textarea {
+  min-width: 0;
+}
+
+a {
+  color: var(--principal);
+}
+
+/* >>>>>> Shell <<<<<< */
+
+.app-shell {
+  min-height: 100vh;
+}
+
+.mobile-topbar {
+  display: none;
+}
+
+.sidebar-backdrop {
+  display: none;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 240px;
+  height: 100vh;
+  overflow-y: auto;
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 30;
+  background: var(--bg);
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.02em;
+  padding: 0 10px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.brand small {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--principal);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.brand-logo-img {
+  height: 44px;
+  width: 44px;
+  object-fit: contain;
+  border-radius: 6px;
+  margin-top: -6px;
+}
+
+.brand-text {
+  margin-top: 6px;
+}
+
+.brand-name-lera {
+  color: var(--text);
+}
+
+.brand-name-pay {
+  color: var(--principal);
+}
+
+.auth-brand {
+  padding: 0;
+  margin-bottom: 4px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid transparent;
+  background: none;
+  text-align: left;
+  width: 100%;
+}
+
+.nav-item:hover {
+  color: var(--text-muted);
+  background: var(--bg-itens);
+  border-color: var(--border-strong)
+}
+
+.nav-item.active {
+  color: #fff;
+  background: var(--bg-itens);
+  border-color: var(--border-strong);
+}
+
+.nav-item .tick {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--silver);
+  flex-shrink: 0;
+}
+.nav-item.active .tick {
+  background: var(--principal);
+}
+
+.main {
+  margin-left: 240px;
+  padding: 28px 36px 60px;
+  max-width: 1120px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.page-title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.page-sub {
+  color: var(--text-muted);
+  font-size: 13.5px;
+  margin-top: 4px;
+}
+
+/* >>>>>> Primitivos <<<<<< */
+
+.card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow-card);
+}
+
+.card + .card {
+  margin-top: 16px;
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 15px;
+  margin: 0 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.stat {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+}
+
+.stat-label {
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-faint);
+  margin-bottom: 8px;
+}
+
+.stat-value {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+label {
+  display: block;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.field {
+  margin-bottom: 14px;
+}
+
+input, select {
+  width: 100%;
+  background: var(--caixa-dados);
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  padding: 9px 11px;
+  border-radius: var(--radius-sm);
+  font-size: 13.5px;
+  outline: none;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--principal);
+  box-shadow: 0 0 0 3px rgba(49, 12, 136, 0.274);
+}
+
+input::placeholder {
+  color: var(--text-faint);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  padding: 9px 16px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--principal);
+  background: var(--principal);
+  color: var(--text);
+}
+
+.btn:hover {
+  background-color: var(--secundario);
+  border-color: var(--secundario);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--principal);
+  outline-offset: 2px;
+}
+
+.btn-primary {
+  background: var(--principal);
+  border-color: var(--principal);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--secundario);
+  border-color: var(--secundario);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.row .field {
+  flex: 1 1 140px;
+  min-width: 0;
+}
+
+.money-input {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  background: var(--caixa-dados);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.money-input:focus-within {
+  border-color: var(--principal);
+  box-shadow: 0 0 0 3px rgba(49, 12, 136, 0.274);
+}
+
+.money-prefix {
+  flex: 0 0 auto;
+  padding: 9px 0 9px 11px;
+  color: var(--text-muted);
+  font-size: 13.5px;
+  user-select: none;
+}
+
+.money-input input {
+  flex: 1 1 auto;
+  width: auto;
+  min-width: 0;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent;
+}
+
+.menu-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  margin: 0 auto;
+  background: var(--text);
+  border-radius: 2px;
+}
+
+.tabs {
+  display: flex;
+  gap: 6px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 18px;
+}
+
+.tab {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  padding: 8px 4px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+.tab.active {
+  color: var(--text);
+  border-bottom-color: var(--principal);
+}
+
+/* >>>>>> Ledger <<<<<< */
+
+.ledger {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.ledger th {
+  text-align: left;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-faint);
+  font-weight: 600;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.ledger td {
+  padding: 10px 10px;
+  border-bottom: 1px solid var(--silver);
+  color: var(--silver);
+  vertical-align: middle;
+}
+
+.ledger tr:last-child td {
+  border-bottom: none;
+}
+
+.ledger .mono {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.ledger-tick {
+  position: relative;
+}
+
+.ledger-tick::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 3px;
+  border-radius: 2px;
+  background: var(--silver);
+}
+.ledger-tick.approved::before,
+.ledger-tick.paid::before {
+  background: var(--green);
+}
+.ledger-tick.denied::before {
+  background: var(--red);
+}
+.ledger-tick.pending::before {
+  background: var(--text-faint);
+}
+.ledger-tick.expired::before,
+.ledger-tick.cancelled::before {
+  background: var(--text-faint);
+}
+
+/* >>>>>> Tags de Status <<<<<< */
+.stamp {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px dashed currentColor;
+}
+
+.stamp.approved {
+  color: var(--green);
+  background: rgba(47, 184, 166, 0.08);
+}
+.stamp.denied {
+  color: var(--red);
+  background: rgba(229, 99, 106, 0.08);
+}
+
+.stamp.expired,
+.stamp.cancelled,
+.stamp.pending {
+  color: var(--text-faint);
+  background: rgba(255, 255, 255, 0.03);
+}
+.stamp.open {
+  color: var(--violet);
+  background: rgba(139, 140, 240, 0.08);
+}
+.stamp.paid {
+  color: var(--green);
+  background: rgba(47, 184, 166, 0.08);
+}
+
+.empty-state {
+  padding: 32px 16px;
+  text-align: center;
+  color: var(--text-faint);
+  font-size: 13px;
+}
+
+.alert {
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: 13px;
+  margin-bottom: 14px;
+  border: 1px solid;
+}
+
+.alert-error {
+  background: rgba(229, 99, 106, 0.08);
+  border-color: rgba(229, 99, 106, 0.35);
+  color: #ffb3b8;
+}
+
+.alert-success {
+  background: rgba(47, 184, 166, 0.08);
+  border-color: rgba(47, 184, 166, 0.35);
+  color: #9fe6dc;
+}
+
+.hint {
+  font-size: 12px;
+  color: var(--text-faint);
+  margin-top: 6px;
+}
+
+.qr-box {
+  background: #fff;
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  display: inline-block;
+}
+
+.qr-box img {
+  display: block;
+  width: 180px;
+  height: 180px;
+}
+
+.emv-code {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  background: var(--caixa-dados);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px;
+  word-break: break-all;
+  max-width: 420px;
+}
+
+/* >>> Auth Screen <<< */
+
+.auth-shell {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.auth-card {
+  width: 380px;
+}
+
+/* >>>>>>>>>> Responsividade <<<<<<<<<< */
+
+/* >>>>> Tablet Grande <<<<< */
+
+/* Sidebar fixa continua, só ajusta respiro e tabelas com scroll
+  próprio caso o conteudo não caiba (evitanto estourar a pagina). */
+@media (max-width: 1024px) {
+  .main {
+    padding: 24px;
+  }
+  .card {
+    overflow-x: auto;
+  }
+}
+
+/* >>>>>  Tablet Estreito <<<<< */ 
+
+/* Sidebar vira um menu gaveta com botao hamburguer */
+@media (max-width: 860px) {
+  .mobile-topbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    padding: 0 16px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    z-index: 40;
+  }
+
+  .mobile-topbar .brand {
+    padding: 0;
+  }
+
+  .sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 25;
+  }
+
+  .sidebar {
+    top: 0;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    box-shadow: none;
+    padding-top: 72px;
+  }
+
+  .sidebar.sidebar-open {
+    transform: translateX(0);
+    box-shadow: 8px 0 24px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Aparece no topbar fixo, evita marca duplicada dentro da gaveta */
+  .sidebar .brand-desktop {
+    display: none;
+  }
+
+  .main {
+    margin-left: 0;
+    padding: 76px 16px 40px;
+  }
+
+  .stat-row,
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-card {
+    width: 100%;
+    max-width: 380px;
+  }
+
+  .auth-shell {
+    padding: 16px;
+  }
+}
+
+/* >>>>>> Celular <<<<<< */
+
+/* Menu hamburguer + tamanho adequado para os itens  */
+@media (max-width: 640px) {
+  .ledger,
+  .ledger tbody,
+  .ledger tr,
+  .ledger td {
+    display: block;
+    width: 100%;
+  }
+
+  .ledger thead {
+    display: none;
+  }
+
+  .ledger tr {
+    padding: 10px 4px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .ledger tr:last-child {
+    border-bottom: none;
+  }
+
+  .ledger td {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px ;
+    border-bottom: none;
+    text-align: right;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  .ledger td[data-label]::after {
+    content: attr(data-label);
+    order: -1;
+    flex-shrink: 0;
+    color: var(--text-faint);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  .ledger-tick {
+    padding-left: 12px;
+  }
+}
