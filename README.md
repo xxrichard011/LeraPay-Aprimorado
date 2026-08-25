@@ -4,7 +4,7 @@
 
 *Docker Desktop* instalado (já vem com Docker Compose): https://www.docker.com/products/docker-desktop
 
-# Passo 1 — Configurar o .env
+# Passo 1 - Configurar o .env
 
 Na raiz do projeto:
 
